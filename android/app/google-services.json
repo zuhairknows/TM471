@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "143905919275-qcf7eqsov4mhtk0g7t09pp5m833pjctj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sa.barber.barber_salon",
+            "certificate_hash": "457135326b00b9f2292252db953a8a2bda76bd66"
+          }
+        },
+        {
           "client_id": "143905919275-haks7kaoo8ocq1cardo9lm497mbfog82.apps.googleusercontent.com",
           "client_type": 3
         }

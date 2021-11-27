@@ -16,6 +16,15 @@ class AuthPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
+              Text(
+                'Barber Shop',
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const SizedBox(height: 36),
               FlutterLogo(size: 196),
               const SizedBox(height: 36),
               OutlinedButton(
