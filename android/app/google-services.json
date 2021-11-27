@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "143905919275",
+    "firebase_url": "https://flutter-barberapp-1-default-rtdb.firebaseio.com",
+    "project_id": "flutter-barberapp-1",
+    "storage_bucket": "flutter-barberapp-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143905919275:android:c892ec0839444814be356e",
+        "android_client_info": {
+          "package_name": "sa.barber.barber_salon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143905919275-haks7kaoo8ocq1cardo9lm497mbfog82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1CCqP_HhctQAqLH8V0HojMjx6mtBy8dY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143905919275-haks7kaoo8ocq1cardo9lm497mbfog82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
