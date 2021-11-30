@@ -1,14 +1,15 @@
-import 'package:barber_salon/routes.dart';
-import 'package:barber_salon/theme/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'ui/home/home_page.dart';
+import 'routes.dart';
+import 'theme/theme.dart';
 
 late FirebaseAuth auth;
 late FirebaseFirestore firestore;
+late SharedPreferences preferences;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,8 @@ void main() async {
 
   auth = FirebaseAuth.instance;
   firestore = FirebaseFirestore.instance;
+
+  preferences = await SharedPreferences.getInstance();
 
   runApp(const MyApp());
 }

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../../routes.dart';
-import '../../../widget/loading_view.dart';
-import '../controller/login_controller.dart';
+import '../../routes.dart';
+import '../../widget/loading_view.dart';
+import 'controller/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

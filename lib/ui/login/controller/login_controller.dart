@@ -1,4 +1,4 @@
-import 'package:barber_salon/utils/firebase_google_helper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../main.dart';
 import '../../../routes.dart';
 import '../../../utils/extensions.dart';
+import '../../../utils/firebase_google_helper.dart';
 
 class LoginController with ChangeNotifier {
   final BuildContext _context;
@@ -37,6 +38,12 @@ class LoginController with ChangeNotifier {
       );
 
       if (result.user != null && result.user!.emailVerified) {
+        final userData = await firestore.collection('users').doc(result.user!.uid).get();
+
+        final salon = userData.data()!['salon'] as DocumentReference<Map<String, dynamic>>?;
+
+        if (salon != null) await preferences.setString('salon', salon.id);
+
         Navigator.of(_context).popUntil((route) => false);
         Navigator.of(_context).pushNamed(Routes.HOME);
       } else {
@@ -47,6 +54,14 @@ class LoginController with ChangeNotifier {
       }
     } on FirebaseAuthException catch (e) {
       _scaffoldMessenger.showMessageSnackBar(e.code);
+
+      loading = false;
+
+      notifyListeners();
+    } on Exception catch (e) {
+      _scaffoldMessenger.showMessageSnackBar(e.toString());
+
+      if (auth.currentUser != null) await auth.signOut();
 
       loading = false;
 
@@ -79,7 +94,7 @@ class LoginController with ChangeNotifier {
       loading = false;
 
       notifyListeners();
-    } on Exception catch(e) {
+    } on Exception catch (e) {
       _scaffoldMessenger.showMessageSnackBar(e.toString());
 
       loading = false;

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sa.barber.barber_salon">
    <application
-        android:label="barber_salon"
+        android:label="Barber Shop"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

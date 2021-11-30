@@ -94,7 +94,7 @@ class RegisterController with ChangeNotifier {
             'last_name': lastNameText,
             'phone': phoneNumberText,
             'email': emailText,
-            'address': address,
+            'city': address,
           });
 
           await result.user!.sendEmailVerification();

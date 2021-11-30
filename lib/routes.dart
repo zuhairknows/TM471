@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'ui/auth/view/auth_page.dart';
-import 'ui/forgot_password/view/forgot_password_page.dart';
+import 'ui/forgot_password/forgot_password_page.dart';
 import 'ui/home/home_page.dart';
-import 'ui/login/view/login_page.dart';
-import 'ui/register/view/register_page.dart';
+import 'ui/login/login_page.dart';
+import 'ui/register/register_page.dart';
 
 class Routes {
   Routes._();
@@ -17,7 +17,7 @@ class Routes {
 
   static final routes = {
     Routes.AUTH: (context) => const AuthPage(),
-    Routes.HOME: (context) => const HomePage(),
+    Routes.HOME: (context) => HomePage(),
     Routes.REGISTER: (context) => const RegisterPage(),
     Routes.LOGIN: (context) => const LoginPage(),
     Routes.FORGOT_PASSWORD: (context) => const ForgotPasswordPage(),

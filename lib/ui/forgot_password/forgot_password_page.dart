@@ -1,9 +1,9 @@
-import '../../../widget/loading_view.dart';
+import '../../widget/loading_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/forgot_password_controller.dart';
+import 'controller/forgot_password_controller.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
