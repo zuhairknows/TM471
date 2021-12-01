@@ -74,6 +74,7 @@ class RegisterPage extends StatelessWidget {
         TextFormField(
           decoration: const InputDecoration(
             suffixIcon: Icon(Icons.phone),
+            prefixText: '+966',
             hintText: '012 XXX XXXX',
             labelText: 'Phone Number',
           ),

@@ -31,6 +31,9 @@ class ProfileController with ChangeNotifier {
 
   bool editing = false;
 
+  ScaffoldMessengerState get _scaffoldMessenger =>
+      ScaffoldMessenger.of(_context);
+
   ProfileController(
     this._context,
   ) {
@@ -89,6 +92,20 @@ class ProfileController with ChangeNotifier {
   updateProfile() {
     FocusScope.of(_context).unfocus();
 
+    String? message;
+
+    if (firstNameText.text.isEmpty || lastNameText.text.isEmpty) {
+      message = 'Please enter a name';
+    } else if (phoneNumberText.text.isEmpty ||
+        !RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(phoneNumberText.text)) {
+      message = 'Please enter a valid Phone Number';
+    }
+
+    if (message != null) {
+      _scaffoldMessenger.showMessageSnackBar(message);
+      return;
+    }
+
     showDialog(
       context: _context,
       barrierDismissible: false,
@@ -101,9 +118,9 @@ class ProfileController with ChangeNotifier {
       ),
     ).then((value) {
       if (value is Exception) {
-        ScaffoldMessenger.of(_context).showMessageSnackBar(value.toString());
+        _scaffoldMessenger.showMessageSnackBar(value.toString());
       } else {
-        ScaffoldMessenger.of(_context).showMessageSnackBar('Profile Updated!');
+        _scaffoldMessenger.showMessageSnackBar('Profile Updated!');
 
         editing = false;
 
@@ -155,10 +172,9 @@ class ProfileController with ChangeNotifier {
       ),
     ).then((value) {
       if (value is Exception) {
-        ScaffoldMessenger.of(_context).showMessageSnackBar(value.toString());
+        _scaffoldMessenger.showMessageSnackBar(value.toString());
       } else {
-        ScaffoldMessenger.of(_context)
-            .showMessageSnackBar('Password reset email sent!');
+        _scaffoldMessenger.showMessageSnackBar('Password reset email sent!');
 
         editing = false;
 
