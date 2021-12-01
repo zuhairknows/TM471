@@ -1,4 +1,4 @@
-import 'package:barber_salon/widget/loading_view.dart';
+import '../../widget/loading_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -160,10 +160,10 @@ class RegisterPage extends StatelessWidget {
         const SizedBox(height: 16),
         DropdownButtonFormField<String>(
           decoration: const InputDecoration(
-            hintText: 'Address',
+            labelText: 'City',
           ),
           onChanged: (text) {
-            controller.address = text ?? '';
+            controller.city = text ?? '';
           },
           items: addressValues.map((e) {
             return DropdownMenuItem(child: Text(e), value: e);

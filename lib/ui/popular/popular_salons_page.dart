@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../widget/error_item.dart';
+import '../../widget/loading_item.dart';
 import 'controller/popular_salons_controller.dart';
 import 'widget/salon_item.dart';
 
@@ -22,8 +24,23 @@ class PopularSalonsPage extends StatelessWidget {
   ) {
     final controller = context.watch<PopularSalonsController>();
 
-    if (controller.salons == null) {
-      return const Center(child: CircularProgressIndicator());
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 200),
+      child: selectView(context, controller),
+    );
+  }
+
+  Widget selectView(
+    BuildContext context,
+    PopularSalonsController controller,
+  ) {
+    if (controller.error != null) {
+      return ErrorItem(
+        error: controller.error!,
+        onRetry: controller.getPopularSalons(),
+      );
+    } else if (controller.salons == null) {
+      return const LoadingItem();
     } else {
       return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

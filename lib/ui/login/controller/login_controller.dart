@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -41,8 +43,11 @@ class LoginController with ChangeNotifier {
         final userData = await firestore.collection('users').doc(result.user!.uid).get();
 
         final salon = userData.data()!['salon'] as DocumentReference<Map<String, dynamic>>?;
+        
+        final userDataMap = userData.data()!;
+        userDataMap['salon'] = salon?.id;
 
-        if (salon != null) await preferences.setString('salon', salon.id);
+        await preferences.setString('user', jsonEncode(userDataMap));
 
         Navigator.of(_context).popUntil((route) => false);
         Navigator.of(_context).pushNamed(Routes.HOME);

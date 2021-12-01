@@ -1,42 +1,54 @@
 import 'package:async/async.dart';
-import '../../../model/salon.dart';
 import 'package:flutter/material.dart';
 
 import '../../../main.dart';
+import '../../../model/salon.dart';
 
 class PopularSalonsController with ChangeNotifier {
   CancelableOperation? _request;
 
   List<Salon>? salons;
 
+  Exception? error;
+
   PopularSalonsController() {
-    _request = CancelableOperation.fromFuture(getPopularSalons());
+    getPopularSalons();
   }
 
-  getPopularSalons() async {
+  getPopularSalons() {
+    _request = CancelableOperation.fromFuture(_getPopularSalons());
+  }
+
+  _getPopularSalons() async {
     try {
-      final response = await firestore.collection('salons').where('popular', isEqualTo: true).get();
+      if (error != null) {
+        error = null;
+        notifyListeners();
+      }
 
-      salons = response.docs
-          .map(
-            (e) {
-              final map = e.data();
+      final response = await firestore
+          .collection('salons')
+          .where('popular', isEqualTo: true)
+          .get();
 
-              return Salon(
-                uuid: e.id,
-                name: map['name'] as String,
-                city: map['city'] as String,
-                address: map['address'] as String,
-                image: map['image'] as String?,
-              );
-            },
-          )
-          .toList();
+      salons = response.docs.map(
+        (e) {
+          final map = e.data();
 
-      notifyListeners();
+          return Salon(
+            uuid: e.id,
+            name: map['name'] as String,
+            city: map['city'] as String,
+            address: map['address'] as String,
+            image: map['image'] as String?,
+          );
+        },
+      ).toList();
     } on Exception catch (e) {
-      print(e);
+      error = e;
     }
+
+    notifyListeners();
   }
 
   @override

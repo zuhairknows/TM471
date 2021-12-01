@@ -7,6 +7,9 @@ final theme = ThemeData(
     primary: colorPrimary,
     secondary: colorPrimary,
   ),
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: Colors.white,
+  ),
   elevatedButtonTheme: elevatedButtonTheme,
   outlinedButtonTheme: outlinedButtonTheme,
   inputDecorationTheme: inputDecorationTheme,
@@ -33,6 +36,10 @@ final outlinedButtonTheme = OutlinedButtonThemeData(
 final inputDecorationTheme = InputDecorationTheme(
   border: OutlineInputBorder(
     borderSide: const BorderSide(width: 2, color: colorPrimary),
+    borderRadius: BorderRadius.circular(8),
+  ),
+  disabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(width: 1, color: Colors.black.withAlpha(0x66)),
     borderRadius: BorderRadius.circular(8),
   ),
 );

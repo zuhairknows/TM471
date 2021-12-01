@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
@@ -13,13 +16,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = jsonDecode(preferences.getString('user')!);
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text('Popular Salons'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(Routes.SALONS);
+            },
             icon: const Icon(Icons.search),
             tooltip: 'Search',
             splashRadius: 24,
@@ -37,6 +44,50 @@ class HomePage extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Welcome',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(height: 4),
+                  StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                    stream: firestore
+                        .collection('users')
+                        .doc(auth.currentUser!.uid)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      final data = snapshot.data;
+
+                      if (data != null) {
+                        final user = data.data()!;
+
+                        return Text(
+                          '${user['first_name']} ${user['last_name']}',
+                          style: const TextStyle(fontSize: 20),
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
+                    },
+                  )
+                ],
+              ),
+            ),
+            ListTile(
+              title: const Text('Profile'),
+              onTap: () {
+                Navigator.pop(context);
+
+                Navigator.of(context).pushNamed(Routes.PROFILE);
+              },
+            ),
             ListTile(
               title: const Text('Sign Out'),
               onTap: () {
@@ -72,7 +123,7 @@ class HomePage extends StatelessWidget {
                   }
                 });
               },
-            )
+            ),
           ],
         ),
       ),

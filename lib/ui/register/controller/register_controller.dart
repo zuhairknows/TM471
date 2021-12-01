@@ -19,7 +19,7 @@ class RegisterController with ChangeNotifier {
 
   String firstNameText = '';
   String lastNameText = '';
-  String address = '';
+  String city = '';
 
   int stage = 1;
 
@@ -61,8 +61,8 @@ class RegisterController with ChangeNotifier {
 
     if (firstNameText.isEmpty || lastNameText.isEmpty) {
       message = 'Please enter a name';
-    } else if (address.isEmpty) {
-      message = 'Please select an address';
+    } else if (city.isEmpty) {
+      message = 'Please select a city';
     }
 
     if (message != null) {
@@ -94,7 +94,7 @@ class RegisterController with ChangeNotifier {
             'last_name': lastNameText,
             'phone': phoneNumberText,
             'email': emailText,
-            'city': address,
+            'city': city,
           });
 
           await result.user!.sendEmailVerification();

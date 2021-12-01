@@ -4,7 +4,9 @@ import 'ui/auth/view/auth_page.dart';
 import 'ui/forgot_password/forgot_password_page.dart';
 import 'ui/home/home_page.dart';
 import 'ui/login/login_page.dart';
+import 'ui/profile/profile_page.dart';
 import 'ui/register/register_page.dart';
+import 'ui/salons_list/salons_list_page.dart';
 
 class Routes {
   Routes._();
@@ -14,6 +16,8 @@ class Routes {
   static const LOGIN = 'auth/login';
   static const REGISTER = 'auth/register';
   static const FORGOT_PASSWORD = 'auth/forgot_password';
+  static const SALONS = 'salons';
+  static const PROFILE = 'profile';
 
   static final routes = {
     Routes.AUTH: (context) => const AuthPage(),
@@ -21,6 +25,8 @@ class Routes {
     Routes.REGISTER: (context) => const RegisterPage(),
     Routes.LOGIN: (context) => const LoginPage(),
     Routes.FORGOT_PASSWORD: (context) => const ForgotPasswordPage(),
+    Routes.SALONS: (context) => const SalonsListPage(),
+    Routes.PROFILE: (context) => const ProfilePage(),
   };
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {}
