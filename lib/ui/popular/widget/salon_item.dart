@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../model/salon.dart';
+import '../../../routes.dart';
 
 class SalonItem extends StatelessWidget {
   final Salon salon;
@@ -17,7 +18,7 @@ class SalonItem extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: () {
-        onTap(salon);
+        Navigator.of(context).pushNamed(Routes.salonRoute(salon.uuid));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

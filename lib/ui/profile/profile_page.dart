@@ -28,7 +28,7 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text('Profile'),
         actions: [
           IconPopupMenuButton(
             itemBuilder: (context) => [

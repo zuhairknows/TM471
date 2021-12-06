@@ -7,12 +7,14 @@ final theme = ThemeData(
     primary: colorPrimary,
     secondary: colorPrimary,
   ),
-  textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: Colors.white,
-  ),
   elevatedButtonTheme: elevatedButtonTheme,
   outlinedButtonTheme: outlinedButtonTheme,
   inputDecorationTheme: inputDecorationTheme,
+  cardTheme: cardTheme,
+);
+
+final cardTheme = CardTheme(
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
 );
 
 final elevatedButtonTheme = ElevatedButtonThemeData(

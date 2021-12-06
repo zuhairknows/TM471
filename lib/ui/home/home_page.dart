@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:barber_salon/ui/salon_bookings/salon_bookings_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -18,19 +19,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = jsonDecode(preferences.getString('user')!);
 
+    final userIsOwner = user['salon'] != null;
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text('Popular Salons'),
+        title: Text(!userIsOwner ? 'Popular Salons' : 'Appointments'),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(Routes.SALONS);
-            },
-            icon: const Icon(Icons.search),
-            tooltip: 'Search',
-            splashRadius: 24,
-          )
+          if (!userIsOwner)
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.SALONS);
+              },
+              icon: const Icon(Icons.search),
+              tooltip: 'Search',
+              splashRadius: 24,
+            )
         ],
         leading: IconButton(
           icon: const Icon(Icons.menu),
@@ -45,9 +49,6 @@ class HomePage extends StatelessWidget {
         child: ListView(
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -58,10 +59,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                    stream: firestore
-                        .collection('users')
-                        .doc(auth.currentUser!.uid)
-                        .snapshots(),
+                    stream: firestore.collection('users').doc(auth.currentUser!.uid).snapshots(),
                     builder: (context, snapshot) {
                       final data = snapshot.data;
 
@@ -88,6 +86,15 @@ class HomePage extends StatelessWidget {
                 Navigator.of(context).pushNamed(Routes.PROFILE);
               },
             ),
+            if (!userIsOwner)
+              ListTile(
+                title: const Text('Appointments'),
+                onTap: () {
+                  Navigator.pop(context);
+
+                  Navigator.of(context).pushNamed(Routes.BOOKINGS);
+                },
+              ),
             ListTile(
               title: const Text('Sign Out'),
               onTap: () {
@@ -127,7 +134,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: const PopularSalonsPage(),
+      body: userIsOwner ? const SalonBookingsPage() : const PopularSalonsPage(),
     );
   }
 }

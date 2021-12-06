@@ -1,10 +1,10 @@
-import 'package:barber_salon/ui/register/controller/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../widget/error_item.dart';
 import '../../widget/loading_item.dart';
 import '../popular/widget/salon_item.dart';
+import '../register/controller/register_controller.dart';
 import 'controller/salons_list_controller.dart';
 
 class SalonsListPage extends StatelessWidget {
@@ -50,11 +50,11 @@ class SalonsListPage extends StatelessWidget {
         title: !controller.searchOpened
             ? const Text('Salons')
             : TextField(
+                cursorColor: Colors.white,
                 decoration: InputDecoration(
                   hintText: 'Search',
                   hintStyle: TextStyle(
-                    color:
-                        Theme.of(context).colorScheme.onPrimary.withAlpha(0x66),
+                    color: Theme.of(context).colorScheme.onPrimary.withAlpha(0x66),
                     fontSize: 18,
                     fontStyle: FontStyle.italic,
                   ),
@@ -139,8 +139,7 @@ class SalonsListPage extends StatelessWidget {
                     ),
                   )
                 : GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,

@@ -32,7 +32,10 @@ class ForgotPasswordPage extends StatelessWidget {
           body: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              const Text('You can set a new password using the link sent via an email'),
+              const Text(
+                'You can set a new password using the link sent via an email',
+                style: TextStyle(fontSize: 16),
+              ),
               const SizedBox(height: 16),
               TextFormField(
                 decoration: const InputDecoration(
@@ -68,8 +71,7 @@ class ForgotPasswordPage extends StatelessWidget {
             ],
           ),
         ),
-        if (controller.loading)
-          const LoadingView(),
+        if (controller.loading) const LoadingView(),
       ],
     );
   }

@@ -43,9 +43,13 @@ class LoginController with ChangeNotifier {
         final userData = await firestore.collection('users').doc(result.user!.uid).get();
 
         final salon = userData.data()!['salon'] as DocumentReference<Map<String, dynamic>>?;
-        
+
         final userDataMap = userData.data()!;
         userDataMap['salon'] = salon?.id;
+
+        await firestore.collection('users').doc(result.user!.uid).update({
+          'token': await messaging.getToken(),
+        });
 
         await preferences.setString('user', jsonEncode(userDataMap));
 
