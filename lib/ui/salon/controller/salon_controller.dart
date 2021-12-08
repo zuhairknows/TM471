@@ -1,8 +1,10 @@
 import 'package:async/async.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../main.dart';
+import '../../../model/booking.dart';
 import '../../../model/salon.dart';
 import '../../../utils/extensions.dart';
 import '../../../utils/utils.dart';
@@ -156,13 +158,19 @@ class SalonController with ChangeNotifier {
           'date',
           isEqualTo: bookingTime,
         )
-        .where(
-          'status',
-          isNotEqualTo: 'Cancelled',
-        )
         .get();
 
-    if (salonBookings.size == 0) {
+    final bookings = salonBookings.docs.map((e) {
+      final map = e.data();
+
+      return Booking(
+        id: e.id,
+        date: (map['date'] as Timestamp).toDate(),
+        status: map['status'] as String,
+      );
+    }).where((element) => element.status != 'Cancelled').toList();
+
+    if (bookings.isEmpty) {
       final booking = await firestore.collection('bookings').doc().set({
         'salon': firestore.collection('salons').doc(salonId),
         'date': bookingTime,

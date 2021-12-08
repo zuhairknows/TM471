@@ -117,7 +117,7 @@ class BookingsPage extends StatelessWidget {
               itemCount: selectedPeriod == 1 ? controller.futureBookings!.length : controller.pastBookings!.length,
               itemBuilder: (context, index) {
                 // Either show Future bookings or Past bookings depending on the selection
-                final bookings =
+                final booking =
                     selectedPeriod == 1 ? controller.futureBookings![index] : controller.pastBookings![index];
 
                 return BookingItem(
