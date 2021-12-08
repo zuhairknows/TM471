@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// A dialog that stays up while a Future is running, and returns the result of the Future when done, or its error
 class LoadingDialog extends AlertDialog {
   final Future future;
   final String message;

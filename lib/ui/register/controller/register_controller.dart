@@ -27,6 +27,8 @@ class RegisterController with ChangeNotifier {
     this._context,
   );
 
+  // Splitting the validation into 2 steps to validate each step alone
+  // Validate the input and show a proper error message when the input is invalid
   validateStepOne() {
     String? message;
 
@@ -74,6 +76,9 @@ class RegisterController with ChangeNotifier {
     }
   }
 
+  // Registering is 2 steps.
+  // 1- Create a User in the Firebase Authentication API
+  // 2- Create a User document in the Firebase Firestore Database
   register() async {
     if (validateStepTwo()) {
       try {
@@ -116,6 +121,7 @@ class RegisterController with ChangeNotifier {
   }
 }
 
+// Static values used for the Cities
 const addressValues = [
   'Jeddah',
   'Riyadh',

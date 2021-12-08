@@ -39,8 +39,10 @@ class BookingsController with ChangeNotifier {
   }
 
   getBookings() {
+    // Cancel the previous listener, if one exists
     _streamListener?.cancel();
 
+    // Create a new listner on the bookings collection, and map the data to the bookings list when any changes occur
     _streamListener = firestore
         .collection('bookings')
         .where(
@@ -140,6 +142,7 @@ class BookingsController with ChangeNotifier {
 
     final tokens = <String>[];
 
+    // Collect the users associated with this Salon, and collect the Tokens for each user to send a notification to each
     final users = await firestore
         .collection('users')
         .where(

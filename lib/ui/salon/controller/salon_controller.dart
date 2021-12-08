@@ -71,6 +71,8 @@ class SalonController with ChangeNotifier {
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 30)),
     ).then((value) {
+      // If the user selects a date, grab the date and format it for the user to see it
+      // Also clear the selected time to inform the user that they need to select a new time
       if (value != null) {
         selectedDate = value;
 
@@ -90,6 +92,9 @@ class SalonController with ChangeNotifier {
       context: _context,
       initialTime: TimeOfDay.now(),
     ).then((value) {
+      // If the user selects a time, we first check if this time is in the past, as there is no way to disable selecting past times
+      // If the time is valid, we clear the minutes from the selection, as we are only interested in the hour
+      // Then we format the time for showing to the user
       if (value != null) {
         final currentSelection = value.toDateTime();
 
@@ -139,6 +144,8 @@ class SalonController with ChangeNotifier {
       selectedTime!.hour,
     );
 
+    // When creating a booking, we first check if there exist any bookings that are at the exact same time
+    // But we also check if this booking is not cancelled (by customer or salon)
     final salonBookings = await firestore
         .collection('bookings')
         .where(
@@ -163,6 +170,7 @@ class SalonController with ChangeNotifier {
         'status': 'Pending',
       });
 
+      // Send a notification to all the Users associated with the Salon
       _sendNotification(
         bookingTime: bookingTime,
       );

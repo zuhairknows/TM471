@@ -58,6 +58,8 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(fontSize: 24),
                   ),
                   const SizedBox(height: 4),
+                  // Create a new listener for the current user ID in the Users collection
+                  // Then use the current user object to get the name of the user
                   StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                     stream: firestore.collection('users').doc(auth.currentUser!.uid).snapshots(),
                     builder: (context, snapshot) {
@@ -86,6 +88,7 @@ class HomePage extends StatelessWidget {
                 Navigator.of(context).pushNamed(Routes.PROFILE);
               },
             ),
+            // We only show the Appointments navigation tile if the user is a Customer
             if (!userIsOwner)
               ListTile(
                 title: const Text('Appointments'),
@@ -134,6 +137,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      // Depending on the user type, we show the popular salons for the Customer, and the appointments for the Salon owner.
       body: userIsOwner ? const SalonBookingsPage() : const PopularSalonsPage(),
     );
   }

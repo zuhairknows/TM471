@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const colorPrimary = Color(0xFFa55555);
 
+// Theme defines the colors of the Material theme, and predefined styles for the Material components (Buttons, TextField, Card, etc)
 final theme = ThemeData(
   colorScheme: const ColorScheme.light(
     primary: colorPrimary,

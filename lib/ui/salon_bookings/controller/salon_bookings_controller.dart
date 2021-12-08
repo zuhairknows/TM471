@@ -12,6 +12,9 @@ import '../../../model/user.dart';
 import '../../../utils/extensions.dart';
 import '../../../widget/loading_dialog.dart';
 
+// The differences between this controller and the one in `BookingsController`,
+// is that this controller gets the bookings for the Salon
+// instead of getting the bookings for the Customer
 class SalonBookingsController with ChangeNotifier {
   StreamSubscription? _streamListener;
   final BuildContext _context;

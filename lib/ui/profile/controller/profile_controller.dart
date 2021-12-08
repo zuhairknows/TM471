@@ -183,6 +183,8 @@ class ProfileController with ChangeNotifier {
     });
   }
 
+  // Changing the password is simply requesting a Password Reset E-Mail
+  // Avoiding the unsecure handling of a Password change from the mobile side
   _requestPasswordChange() async {
     await auth.sendPasswordResetEmail(email: auth.currentUser!.email!);
 

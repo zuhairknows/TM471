@@ -38,7 +38,7 @@ class LoginController with ChangeNotifier {
         email: emailText,
         password: passwordText,
       );
-
+      
       if (result.user != null && result.user!.emailVerified) {
         final userData = await firestore.collection('users').doc(result.user!.uid).get();
 
@@ -56,6 +56,7 @@ class LoginController with ChangeNotifier {
         Navigator.of(_context).popUntil((route) => false);
         Navigator.of(_context).pushNamed(Routes.HOME);
       } else {
+        // If the user is not E-Mail verified yet, resend a new verification email
         _scaffoldMessenger.showMessageSnackBar('E-Mail not verified, please check inbox');
 
         await result.user!.sendEmailVerification();

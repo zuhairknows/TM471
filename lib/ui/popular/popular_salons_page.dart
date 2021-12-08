@@ -47,6 +47,7 @@ class PopularSalonsPage extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
+          // A lower childAspectRatio makes it possible for the Grid item to be larger than a square
           childAspectRatio: 0.8,
         ),
         physics: const BouncingScrollPhysics(),

@@ -25,6 +25,7 @@ class LoginPage extends StatelessWidget {
   ) {
     final controller = context.watch<LoginController>();
 
+    // Using a Stack to show the LoadingView on top of the UI for the page
     return Stack(
       children: [
         Scaffold(

@@ -81,6 +81,8 @@ class SalonsListController with ChangeNotifier {
     notifyListeners();
   }
 
+  // applySearch simply searches the already acquired Salons
+  // As we don't have a large dataset yet, we can get away with Local search instead of Server search
   void applySearch(
     String searchText,
     String? city,

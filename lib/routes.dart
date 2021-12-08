@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ui/auth/view/auth_page.dart';
+import 'ui/auth/auth_page.dart';
 import 'ui/bookings/bookings_page.dart';
 import 'ui/feedback/feedback_page.dart';
 import 'ui/forgot_password/forgot_password_page.dart';
@@ -11,6 +11,7 @@ import 'ui/register/register_page.dart';
 import 'ui/salon/salon_page.dart';
 import 'ui/salons_list/salons_list_page.dart';
 
+// This class defines the routes inside the app
 class Routes {
   Routes._();
 
@@ -39,6 +40,8 @@ class Routes {
     Routes.BOOKINGS: (context) => const BookingsPage(),
   };
 
+  // onGenerateRoute is called before selecting one of the statically defined routes
+  // We use this to get parameters from the route
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     if (settings.name!.startsWith('salons/')) {
       final salonId = settings.name!.split('/')[1];

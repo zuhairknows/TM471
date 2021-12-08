@@ -3,6 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../main.dart';
 
+// OnMessage is called when a notification is recieved from Firebase while the application is in the Foreground
 onMessage(RemoteMessage message) {
   RemoteNotification? notification = message.notification;
   AndroidNotification? android = message.notification?.android;

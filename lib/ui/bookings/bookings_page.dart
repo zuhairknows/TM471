@@ -34,7 +34,9 @@ class BookingsPage extends StatelessWidget {
             tooltip: MaterialLocalizations.of(context).backButtonTooltip,
             splashRadius: 24,
           ),
-          title: const Text('Appointments')),
+          title: const Text('Appointments'),
+      ),
+      // Animated Switcher is used to show an animation when changing between view states of the page
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
         child: selectView(context, controller),
@@ -42,6 +44,10 @@ class BookingsPage extends StatelessWidget {
     );
   }
 
+  // selectView returns a state of the view depending on the controller.
+  // Error view if there is an error
+  // Loading view if the data is being loaded
+  // Data view if the data is ready
   Widget selectView(
     BuildContext context,
     BookingsController controller,
@@ -110,7 +116,8 @@ class BookingsPage extends StatelessWidget {
               key: ValueKey(selectedPeriod),
               itemCount: selectedPeriod == 1 ? controller.futureBookings!.length : controller.pastBookings!.length,
               itemBuilder: (context, index) {
-                final booking =
+                // Either show Future bookings or Past bookings depending on the selection
+                final bookings =
                     selectedPeriod == 1 ? controller.futureBookings![index] : controller.pastBookings![index];
 
                 return BookingItem(

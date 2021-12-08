@@ -21,6 +21,7 @@ class PopularSalonsController with ChangeNotifier {
 
   _getPopularSalons() async {
     try {
+      // Reset the error before launching a new request, to show the Loading state
       if (error != null) {
         error = null;
         notifyListeners();

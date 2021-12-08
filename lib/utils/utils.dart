@@ -26,6 +26,7 @@ extension TimeOfDayExtension on TimeOfDay {
   }
 }
 
+// Send a Notification using the old (non-secure) Firebase Cloud Messaging HTTP API
 sendNotifications({
   required List<String> ids,
   required String title,
