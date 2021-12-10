@@ -32,6 +32,7 @@ class FirebaseService {
     }
   }
 
+//  not active
   Future<void> signOutFromGoogle() async {
     await _googleSignIn.signOut();
     await _auth.signOut();

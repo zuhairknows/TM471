@@ -52,7 +52,7 @@ class BookingsController with ChangeNotifier {
         .snapshots()
         .listen((event) => _getBookings(event.docs));
   }
-
+//  convert database data into objects
   _getBookings(List<QueryDocumentSnapshot<Map<String, dynamic>>> docs) async {
     try {
       if (bookings != null) {

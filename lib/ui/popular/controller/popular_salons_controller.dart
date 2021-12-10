@@ -19,6 +19,7 @@ class PopularSalonsController with ChangeNotifier {
     _request = CancelableOperation.fromFuture(_getPopularSalons());
   }
 
+  //  get firestore query popular salon
   _getPopularSalons() async {
     try {
       // Reset the error before launching a new request, to show the Loading state

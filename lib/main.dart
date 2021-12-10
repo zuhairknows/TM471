@@ -52,6 +52,7 @@ void main() async {
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
+  // connect with firebase instance
   auth = FirebaseAuth.instance;
   firestore = FirebaseFirestore.instance;
   messaging = FirebaseMessaging.instance;
@@ -72,6 +73,7 @@ void main() async {
     sound: true,
   );
 
+  // when a notification received from firebase
   FirebaseMessaging.onMessage.listen(onMessage);
 
   // Get a new instance of Shared Preferences
