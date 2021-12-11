@@ -100,6 +100,7 @@ class RegisterController with ChangeNotifier {
             'phone': phoneNumberText,
             'email': emailText,
             'city': city,
+            //  'age': age,
           });
 
           await result.user!.sendEmailVerification();
