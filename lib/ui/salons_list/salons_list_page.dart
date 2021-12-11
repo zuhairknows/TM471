@@ -7,6 +7,7 @@ import '../popular/widget/salon_item.dart';
 import '../register/controller/register_controller.dart';
 import 'controller/salons_list_controller.dart';
 
+//  search page
 class SalonsListPage extends StatelessWidget {
   const SalonsListPage({Key? key}) : super(key: key);
 

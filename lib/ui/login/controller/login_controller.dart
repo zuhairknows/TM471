@@ -38,7 +38,8 @@ class LoginController with ChangeNotifier {
         email: emailText,
         password: passwordText,
       );
-      
+
+      //  check user type
       if (result.user != null && result.user!.emailVerified) {
         final userData = await firestore.collection('users').doc(result.user!.uid).get();
 

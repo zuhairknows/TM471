@@ -11,6 +11,7 @@ import '../../../model/salon.dart';
 import '../../../utils/extensions.dart';
 import '../../../widget/loading_dialog.dart';
 
+//
 class BookingsController with ChangeNotifier {
   StreamSubscription? _streamListener;
   final BuildContext _context;
@@ -52,7 +53,7 @@ class BookingsController with ChangeNotifier {
         .snapshots()
         .listen((event) => _getBookings(event.docs));
   }
-//  convert database data into objects
+//  convert database elements into objects
   _getBookings(List<QueryDocumentSnapshot<Map<String, dynamic>>> docs) async {
     try {
       if (bookings != null) {
@@ -91,6 +92,7 @@ class BookingsController with ChangeNotifier {
     notifyListeners();
   }
 
+  //  booking cancellation process
   cancelBooking(Booking booking) {
     showDialog(
       context: _context,

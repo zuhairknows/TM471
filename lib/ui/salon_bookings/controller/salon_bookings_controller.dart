@@ -213,6 +213,7 @@ class SalonBookingsController with ChangeNotifier {
     });
   }
 
+  //
   _cancelBooking(Booking booking) async {
     await firestore.collection('bookings').doc(booking.id).update({
       'status': 'Cancelled',

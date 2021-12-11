@@ -18,6 +18,7 @@ class FeedbackController with ChangeNotifier {
     this.salonId,
   );
 
+  //  submit salon feedback
   sendFeedback() {
     if (feedbackText.trim().isEmpty) {
       _scaffoldMessenger.showMessageSnackBar('Cannot send an empty feedback');

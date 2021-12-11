@@ -8,6 +8,8 @@ import '../../main.dart';
 import '../../routes.dart';
 import '../popular/popular_salons_page.dart';
 
+//  home page that change its content based on the user permissions
+//  additionally, it has the drawer section on the left
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
